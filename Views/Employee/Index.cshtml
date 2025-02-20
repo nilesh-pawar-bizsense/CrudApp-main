@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CrudApp.Models.Employee>
+
+<h2>Employee List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>@employee.Name</td>
+                <td>@employee.Age</td>
+                <td>@employee.Department</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = employee.Id })">Edit</a> |
+                    <a href="@Url.Action("Delete", new { id = employee.Id })" onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">Create New Employee</a>
